@@ -964,6 +964,229 @@
 
 <div class="section-divider"></div>
 
+<!-- REVENUE CALCULATOR -->
+<section id="calculator" style="padding: 6rem 2rem; max-width: 860px; margin: 0 auto;">
+  <span class="section-eyebrow">REVENUE CALCULATOR</span>
+  <h2 class="section-heading" style="text-align:center; margin-bottom:0.5rem;">See how much revenue <em>you could be recovering</em></h2>
+  <p class="section-sub" style="text-align:center; margin-bottom:3rem; max-width:600px; margin-left:auto; margin-right:auto;">Estimate the value of identifying and retargeting visitors who leave your site without buying.</p>
+
+  <div style="background:#0d1025; border-radius:20px; border:1px solid rgba(124,58,237,0.2); padding:2.5rem 2rem;">
+
+    <!-- SLIDERS -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem;">
+
+      <!-- Monthly Visitors -->
+      <div class="calc-field">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <label style="font-size:13px; color:#a0a8c8;">Monthly Website Visitors</label>
+          <span id="lbl-visitors" style="font-size:13px; font-weight:500; color:#f0f0ff;">10,000</span>
+        </div>
+        <input type="range" id="sl-visitors" min="1000" max="500000" step="1000" value="10000" class="beam-slider">
+        <div style="display:flex; justify-content:space-between; margin-top:3px;">
+          <span style="font-size:10px; color:#606880;">1K</span>
+          <span style="font-size:10px; color:#606880;">500K</span>
+        </div>
+      </div>
+
+      <!-- Visitor Identification Rate -->
+      <div class="calc-field">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <label style="font-size:13px; color:#a0a8c8;">Visitor Identification Rate</label>
+          <span id="lbl-idrate" style="font-size:13px; font-weight:500; color:#f0f0ff;">25%</span>
+        </div>
+        <input type="range" id="sl-idrate" min="0" max="100" step="1" value="25" class="beam-slider">
+        <div style="display:flex; justify-content:space-between; margin-top:3px;">
+          <span style="font-size:10px; color:#606880;">0%</span>
+          <span style="font-size:10px; color:#606880;">100%</span>
+        </div>
+      </div>
+
+      <!-- E-com Conversion Rate -->
+      <div class="calc-field">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <label style="font-size:13px; color:#a0a8c8;">Current Conversion Rate</label>
+          <span id="lbl-cvr" style="font-size:13px; font-weight:500; color:#f0f0ff;">2%</span>
+        </div>
+        <input type="range" id="sl-cvr" min="1" max="15" step="0.5" value="2" class="beam-slider">
+        <div style="display:flex; justify-content:space-between; margin-top:3px;">
+          <span style="font-size:10px; color:#606880;">1%</span>
+          <span style="font-size:10px; color:#606880;">15%</span>
+        </div>
+      </div>
+
+      <!-- Average Order Value -->
+      <div class="calc-field">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <label style="font-size:13px; color:#a0a8c8;">Average Order Value</label>
+          <span id="lbl-aov" style="font-size:13px; font-weight:500; color:#f0f0ff;">$100</span>
+        </div>
+        <input type="range" id="sl-aov" min="10" max="2000" step="10" value="100" class="beam-slider">
+        <div style="display:flex; justify-content:space-between; margin-top:3px;">
+          <span style="font-size:10px; color:#606880;">$10</span>
+          <span style="font-size:10px; color:#606880;">$2,000</span>
+        </div>
+      </div>
+
+      <!-- Retargeting Conversion Rate -->
+      <div class="calc-field" style="grid-column: 1 / -1;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <label style="font-size:13px; color:#a0a8c8;">Retargeting Conversion Rate</label>
+          <span id="lbl-retarget" style="font-size:13px; font-weight:500; color:#f0f0ff;">3%</span>
+        </div>
+        <input type="range" id="sl-retarget" min="0.5" max="10" step="0.5" value="3" class="beam-slider">
+        <div style="display:flex; justify-content:space-between; margin-top:3px;">
+          <span style="font-size:10px; color:#606880;">0.5%</span>
+          <span style="font-size:10px; color:#606880;">10%</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DIVIDER -->
+    <div style="border-top:1px solid rgba(124,58,237,0.2); margin:2rem 0;"></div>
+
+    <!-- RESULTS -->
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <div style="font-size:11px; color:#a78bfa; letter-spacing:3px; margin-bottom:0.5rem;">ESTIMATED RECOVERABLE MONTHLY REVENUE</div>
+      <div id="result-monthly" style="font-size:52px; font-weight:500; color:#f0f0ff; line-height:1.1;">$0</div>
+      <div style="font-size:13px; color:#606880; margin-top:4px;">Potential monthly upside</div>
+      <div id="result-annual" style="font-size:18px; color:#a78bfa; font-weight:500; margin-top:6px;">$0 annualized</div>
+    </div>
+
+    <!-- STATS ROW -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.5rem;">
+      <div style="background:#0a0d1a; border:1px solid rgba(124,58,237,0.15); border-radius:10px; padding:14px; text-align:center;">
+        <div id="stat-identified" style="font-size:20px; font-weight:500; color:#f0f0ff;">0</div>
+        <div style="font-size:10px; color:#606880; margin-top:3px;">Visitors Identified</div>
+      </div>
+      <div style="background:#0a0d1a; border:1px solid rgba(124,58,237,0.15); border-radius:10px; padding:14px; text-align:center;">
+        <div id="stat-retargetable" style="font-size:20px; font-weight:500; color:#f0f0ff;">0</div>
+        <div style="font-size:10px; color:#606880; margin-top:3px;">Retargetable Non-Buyers</div>
+      </div>
+      <div style="background:#0a0d1a; border:1px solid rgba(124,58,237,0.15); border-radius:10px; padding:14px; text-align:center;">
+        <div id="stat-purchases" style="font-size:20px; font-weight:500; color:#f0f0ff;">0</div>
+        <div style="font-size:10px; color:#606880; margin-top:3px;">Projected Add. Purchases</div>
+      </div>
+    </div>
+
+    <!-- FORMULA -->
+    <div style="background:#0a0d1a; border-radius:10px; padding:14px; text-align:center; font-size:12px; color:#606880; line-height:1.8;">
+      <span id="formula-visitors" style="color:#a78bfa;">0</span> visitors
+      × <span id="formula-id" style="color:#a78bfa;">0%</span> identified
+      × <span id="formula-nonbuyers" style="color:#a78bfa;">0%</span> non-buyers
+      × <span id="formula-ret" style="color:#a78bfa;">0%</span> retargeting conversion
+      × <span id="formula-aov" style="color:#a78bfa;">$0</span> AOV
+      = <span id="formula-result" style="color:#f0f0ff; font-weight:500;">$0/month</span>
+    </div>
+
+    <p style="font-size:10px; color:#44385a; text-align:center; margin-top:1rem;">Illustrative estimate only. Actual results vary by campaign, traffic quality, product, and follow-up strategy.</p>
+
+    <!-- CTA -->
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="https://beam.beamly.ai/book" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:0.95rem; padding:0.85rem 2rem;">
+        Book A Call Now →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .beam-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, #7c3aed 0%, #7c3aed var(--val, 25%), #1e2540 var(--val, 25%));
+    outline: none;
+    cursor: pointer;
+  }
+  .beam-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #9333ea;
+    border: 2px solid #c084fc;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(147,51,234,0.5);
+  }
+  .beam-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #9333ea;
+    border: 2px solid #c084fc;
+    cursor: pointer;
+  }
+  .calc-field label { display:block; }
+</style>
+
+<script>
+(function(){
+  function fmt(n){ return Math.round(n).toLocaleString(); }
+  function fmtDollar(n){ return '$' + Math.round(n).toLocaleString(); }
+
+  function updateSliderTrack(el){
+    const min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
+    const pct = ((val - min) / (max - min)) * 100;
+    el.style.setProperty('--val', pct + '%');
+    el.style.background = `linear-gradient(to right, #7c3aed 0%, #7c3aed ${pct}%, #1e2540 ${pct}%)`;
+  }
+
+  function calc(){
+    const visitors  = parseFloat(document.getElementById('sl-visitors').value);
+    const idRate    = parseFloat(document.getElementById('sl-idrate').value) / 100;
+    const cvr       = parseFloat(document.getElementById('sl-cvr').value) / 100;
+    const aov       = parseFloat(document.getElementById('sl-aov').value);
+    const retarget  = parseFloat(document.getElementById('sl-retarget').value) / 100;
+
+    const identified    = visitors * idRate;
+    const buyers        = visitors * cvr;
+    const retargetable  = Math.max(0, identified - buyers);
+    const addPurchases  = retargetable * retarget;
+    const monthly       = addPurchases * aov;
+    const annual        = monthly * 12;
+    const nonBuyerPct   = identified > 0 ? Math.round((retargetable / identified) * 100) : 0;
+
+    document.getElementById('lbl-visitors').textContent = fmt(visitors);
+    document.getElementById('lbl-idrate').textContent   = Math.round(idRate * 100) + '%';
+    document.getElementById('lbl-cvr').textContent      = (cvr * 100).toFixed(1) + '%';
+    document.getElementById('lbl-aov').textContent      = fmtDollar(aov);
+    document.getElementById('lbl-retarget').textContent = (retarget * 100).toFixed(1) + '%';
+
+    document.getElementById('result-monthly').textContent  = fmtDollar(monthly);
+    document.getElementById('result-annual').textContent   = fmtDollar(annual) + ' annualized';
+    document.getElementById('stat-identified').textContent = fmt(identified);
+    document.getElementById('stat-retargetable').textContent = fmt(retargetable);
+    document.getElementById('stat-purchases').textContent  = fmt(addPurchases);
+
+    document.getElementById('formula-visitors').textContent  = fmt(visitors);
+    document.getElementById('formula-id').textContent        = Math.round(idRate * 100) + '%';
+    document.getElementById('formula-nonbuyers').textContent = nonBuyerPct + '%';
+    document.getElementById('formula-ret').textContent       = (retarget * 100).toFixed(1) + '%';
+    document.getElementById('formula-aov').textContent       = fmtDollar(aov);
+    document.getElementById('formula-result').textContent    = fmtDollar(monthly) + '/month';
+
+    ['sl-visitors','sl-idrate','sl-cvr','sl-aov','sl-retarget'].forEach(id => {
+      updateSliderTrack(document.getElementById(id));
+    });
+  }
+
+  ['sl-visitors','sl-idrate','sl-cvr','sl-aov','sl-retarget'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', calc);
+    updateSliderTrack(el);
+  });
+
+  calc();
+})();
+</script>
+
+<div class="section-divider"></div>
+
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="testimonials-heading-row">
